@@ -1,0 +1,20 @@
+{
+    "Actor": {},
+    "Item": {
+        "types": [
+            "equipment"
+        ],
+        "templates": {
+            "base":{
+                "description":""
+            }
+        },
+        "equipment": {
+            "templates": [
+                "base"
+            ],
+            "load": 1,
+            "supply": false
+        }
+    }
+}

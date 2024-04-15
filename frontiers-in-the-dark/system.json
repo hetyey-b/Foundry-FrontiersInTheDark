@@ -1,0 +1,21 @@
+{
+    "name": "frontiers-in-the-dark",
+    "title": "Frontiers in the Dark",
+    "description": "A system for playing Frontiers in the Dark",
+    "author": "hrspks",
+    "version": 0.01,
+    "compatibility": {
+        "minimum": 11,
+        "verified": "11.315"
+    },
+    "esmodules": [
+        "frontiers-in-the-dark.js"
+    ],
+    "styles": [
+        "frontiers-in-the-dark.css"
+    ],
+    "packs": [],
+    "languages": [],
+    "gridDistance": 2,
+    "gridUnits": "m"
+}
