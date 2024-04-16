@@ -1,0 +1,27 @@
+{
+    "frontiers-in-the-dark": {
+        "systemTerms": {
+            "load": "Load",
+            "supply": "Supply"
+        },
+        "attributes": {
+            "perception": "Perception",
+            "physical": "Physical",
+            "mental": "Mental"
+        },
+        "actions": {
+            "hunt":"Hunt",
+            "research": "Research",
+            "rig": "Rig",
+            "scout": "Scout",
+            "finesse": "Finesse",
+            "manoeuvre": "Manoeuvre",
+            "skirmish": "Skirmish",
+            "wreck": "Wreck",
+            "attune": "Attune",
+            "command": "Command",
+            "consort": "Consort",
+            "deceive": "Deceive"
+        }
+    }
+}

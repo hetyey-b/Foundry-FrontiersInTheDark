@@ -1,0 +1,116 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{data.img}}" data-edit="img" title="{{data.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{data.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+        <h2><input name="data.playbook" type="text" value="{{data.system.playbook}}" placeholder="Playbook"/></h2>
+
+        <label for="datat.stress.value">Stress:</label>
+        <input name="data.stress.value" id="data.stress.value" type="text" value="{{data.system.stress.value}}" data-dtype="Number"/>
+
+        <span>/{{data.system.stress.max}}</span>
+
+
+    </header>
+
+
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="inventory">Inventory</a>
+        <a class="item" data-tab="actions">Actions</a>
+        <a class="item" data-tab="abilities">Abilities</a>
+        <a class="item" data-tab="notes">Notes</a>
+    </nav>
+
+    <section class="sheet-body">
+
+        {{!-- Actions Tab --}}
+        <div class="tab" data-group="primary" data-tab="actions">
+            <span>Perception: {{data.system.attributes.perception.value}}</span>
+            <ul>
+                <li>
+                    <label for="data.attributes.perception.hunt">Hunt</label>
+                    <input type="text" name="data.attributes.perception.hunt" id="data.attributes.perception.hunt" value="{{data.system.attributes.perception.hunt}}" data-dtype="Number"/>
+                </li>
+                <li>
+                    <label for="data.attributes.perception.research">Research</label>
+                    <input type="text" name="data.attributes.perception.research" id="data.attributes.perception.research" value="{{data.system.attributes.perception.research}}" data-dtype="Number"/>
+                </li>
+                <li>
+                    <label for="data.attributes.perception.rig">Rig</label>
+                    <input type="text" name="data.attributes.perception.rig" id="data.attributes.perception.rig" value="{{data.system.attributes.perception.rig}}" data-dtype="Number"/>
+                </li>
+                <li>
+                    <label for="data.attributes.perception.scout">Scout</label>
+                    <input type="text" name="data.attributes.perception.scout" id="data.attributes.perception.scout" value="{{data.system.attributes.perception.scout}}" data-dtype="Number"/>
+                </li>
+            </ul>
+
+
+            <span>Physical: {{data.system.attributes.physical.value}}</span>
+            <ul>
+                <li>
+                    <label for="data.attributes.physical.finesse">Finesse</label>
+                    <input type="text" name="data.attributes.physical.finesse" id="data.attributes.physical.finesse" value="{{data.system.attributes.physical.finesse}}" data-dtype="Number"/>
+                </li>
+                <li>
+                    <label for="data.attributes.physical.manoeuvre">Manoeuvre</label>
+                    <input type="text" name="data.attributes.physical.manoeuvre" id="data.attributes.physical.manoeuvre" value="{{data.system.attributes.physical.manoeuvre}}" data-dtype="Number"/>
+                </li>
+                <li>
+                    <label for="data.attributes.physical.skirmish">Skirmish</label>
+                    <input type="text" name="data.attributes.physical.skirmish" id="data.attributes.physical.skirmish" value="{{data.system.attributes.physical.skirmish}}" data-dtype="Number"/>
+                </li>
+                <li>
+                    <label for="data.attributes.physical.wreck">Wreck</label>
+                    <input type="text" name="data.attributes.physical.wreck" id="data.attributes.physical.wreck" value="{{data.system.attributes.physical.wreck}}" data-dtype="Number"/>
+                </li>
+            </ul>
+
+
+            <span>Mental: {{data.system.attributes.mental.value}}</span>
+            <ul>
+                <li>
+                    <label for="data.attributes.mental.attune">Attune</label>
+                    <input type="text" name="data.attributes.mental.attune" id="data.attributes.mental.attune" value="{{data.system.attributes.mental.attune}}" data-dtype="Number"/>
+                </li>
+                <li>
+                    <label for="data.attributes.mental.command">Command</label>
+                    <input type="text" name="data.attributes.mental.command" id="data.attributes.mental.command" value="{{data.system.attributes.mental.command}}" data-dtype="Number"/>
+                </li>
+                <li>
+                    <label for="data.attributes.mental.consort">Consort</label>
+                    <input type="text" name="data.attributes.mental.consort" id="data.attributes.mental.consort" value="{{data.system.attributes.mental.consort}}" data-dtype="Number"/>
+                </li>
+                <li>
+                    <label for="data.attributes.mental.deceive">Deceive</label>
+                    <input type="text" name="data.attributes.mental.deceive" id="data.attributes.mental.deceive" value="{{data.system.attributes.mental.deceive}}" data-dtype="Number"/>
+                </li>
+            </ul>
+        </div>
+
+        {{!-- Abilities Tab --}}
+        <div class="tab" data-group="primary" data-tab="abilities">
+            Lorem Ipsum dolor sit amet Abilities
+        </div>
+
+        {{!-- Inventory Tab --}}
+        <div class="tab" data-group="primary" data-tab="inventory">
+            <h1>Load: {{data.system.load}} - {{data.system.loadText}}</h1>
+            <hr/>
+            <ul>
+                {{#each items as |item id|}}
+                <div class="item" data-item-id="{{item._id}}">
+                    {{item.name}} - Load: {{item.system.load}}
+                    <a class="item-delete"><i class="fas fa-trash"></i></a>
+                </div>
+                <i>{{item.system.description}}</i>
+                <hr/>
+                {{/each}}
+            </ul>
+        </div>
+
+        {{!-- Notes Tab --}}
+        <div class="tab" data-group="primary" data-tab="notes">
+            Notes tab under construction
+        </div>
+    </section>
+</form>
