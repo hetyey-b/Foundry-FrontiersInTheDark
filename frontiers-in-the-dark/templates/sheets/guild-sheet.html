@@ -5,7 +5,40 @@
     </header>
     <div>
         <label for="data.coin">Coin: </label>
-        <input name="data.coin" id="data.coin" type="text" value="{{data.system.coin}}" data-dtype="Number"/>
+        <input class="digitInput" name="data.coin" id="data.coin" type="text" value="{{data.system.coin}}" data-dtype="Number"/>
     </div>
-    <textarea name="data.description">{{data.system.description}}</textarea>
+
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="inventory">Inventory</a>
+        <a class="item" data-tab="ability">Abilities</a>
+        <a class="item" data-tab="description">Description</a>
+    </nav>
+
+    <section class="sheet-body">
+        <div class="tab" data-group="primary" data-tab="inventory">
+            {{#each equipment as |item id|}}
+            <div class="item" data-item-id="{{item._id}}">
+                <a class="show-item"><b>{{item.name}} - Load: {{item.system.load}}</b></a>
+                <i>{{item.system.description}}</i>
+                <a class="item-delete"><i class="fas fa-trash"></i></a>
+            </div>
+            <hr/>
+            {{/each}}
+        </div>
+
+        <div class="tab" data-group="primary" data-tab="ability">
+            {{#each guildabilities as |item id|}}
+            <div class="item" data-item-id="{{item._id}}">
+                <a class="show-item"><b>{{item.name}}:</b></a>
+                <i>{{item.system.description}}</i>
+                <a class="item-delete"><i class="fas fa-trash"></i></a>
+            </div>
+            <hr/>
+            {{/each}}
+        </div>
+
+        <div class="tab" data-group="primary" data-tab="description">
+            <textarea name="data.description">{{data.system.description}}</textarea>
+        </div>
+    </section>
 </form>

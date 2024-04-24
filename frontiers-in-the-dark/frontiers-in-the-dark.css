@@ -6,6 +6,15 @@
     grid-row-gap: 5px;
 }
 
+.hireling-upper {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+
 .upper-section {
     margin-top: 10px;
     display: grid;
