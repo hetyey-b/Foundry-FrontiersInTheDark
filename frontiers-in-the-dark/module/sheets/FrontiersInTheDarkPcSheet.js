@@ -56,6 +56,7 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
         html.find(".item-delete").click(this._onItemDelete.bind(this));
         html.find(".item-roll").click(this._onItemRoll.bind(this));
         html.find(".show-item").click(this._onShowItem.bind(this));
+        html.find(".fortune-roll").click(this._onFortuneRoll.bind(this));
 
         super.activateListeners(html);
     }
@@ -70,6 +71,10 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
         this.rollPopup(event.currentTarget);
     }
 
+    async _onFortuneRoll() {
+        this.fortuneRoll();
+    }
+
     async _onShowItem(event) {
         const element = $(event.currentTarget).parents(".item");
         const item = this.actor.items.get(element.data("itemId"));
@@ -82,6 +87,69 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
             type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         }
         CONFIG.ChatMessage.documentClass.create(messageData, {})
+    }
+
+    fortuneRoll() {
+        const resultTextFromRoll = {
+            1: "1 - Failure",
+            2: "2 - Failure",
+            3: "3 - Failure",
+            4: "4 - Success with a Consequence",
+            5: "5 - Success with a Consequence",
+            6: "6 - Success",
+            "crit": "6,6 - Critical Success",
+        };
+        let content = `
+            <form>
+                <label>Dice</label>
+                <input name="dice" id="dice" type="text" data-dtype="Number"/>
+            </form>
+        `;
+
+        new Dialog({
+            title: "Roll",
+            content: content,
+            buttons: {
+                yes: {
+                    label: "Roll",
+                    callback: async (html) => {
+                        let speaker = ChatMessage.getSpeaker();
+                        let d = parseInt(html.find('[name="dice"]')[0].value);
+                        if (d < 0) {
+                            d = 0;
+                        }
+                        let r = new Roll(`${d === 0 ? 2 : d}d6`, {});
+                        r.evaluate({async: true});
+                        const rolls = (r.terms)[0].results;
+                        const rollResults = rolls.map(roll => roll.result).sort((a, b) => b - a);
+
+                        let rollResultText = "";
+                        if (d === 0) {
+                            rollResultText = resultTextFromRoll[rollResults[1]];
+                        } else if (rollResults[0] === 6 && rollResults[1] === 6) {
+                            rollResultText = resultTextFromRoll["crit"];
+                        } else {
+                            rollResultText = resultTextFromRoll[rollResults[0]];
+                        }
+
+                        debugger
+                        let result = await renderTemplate("systems/frontiers-in-the-dark/templates/chat/fortuneRollTemplate.html", {rolls, rollResultText});
+
+                        let messageData = {
+                            speaker: speaker,
+                            content: result,
+                            type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                            roll: r
+                        }
+                        CONFIG.ChatMessage.documentClass.create(messageData, {})
+                    }
+                },
+                no: {
+                    label: "Close",
+                }
+            },
+            default: "yes",
+        }).render(true);
     }
 
     rollPopup(element) {
