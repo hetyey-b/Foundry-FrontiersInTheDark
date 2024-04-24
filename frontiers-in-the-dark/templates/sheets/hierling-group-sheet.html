@@ -1,0 +1,21 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{data.img}}" data-edit="img" title="{{data.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{data.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+
+    <section class="upper-section">
+        <div class="upper-section-block">
+            <label for="data.level">Level:</label>
+            <input class="digitInput" name="data.level" id="data.level" type="text" value="{{data.system.level}}" data-dtype="Number"/>
+            <span>/{{data.system.level}}</span>
+        <div class="upper-section-block">
+            <label for="data.harm">Harm:</label>
+            <input class="digitInput" name="data.harm" id="data.harm" type="text" value="{{data.system.harm}}" data-dtype="Number"/>
+            <span>/{{data.system.harm-max}}</span>
+        </div>
+    </section>
+
+    <textarea name="data.description">{{data.system.description}}</textarea>
+</form>
+

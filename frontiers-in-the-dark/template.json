@@ -2,15 +2,53 @@
     "Actor": {
         "types": [
             "pc",
+            "hierling-group",
+            "hierling-specialist",
+            "animal",
             "guild"
         ],
         "templates": {
             "base":{
-                "notes": "Lorem ipsum dolor sit amet"
+                "description": "Lorem ipsum dolor sit amet"
             }
+        },
+        "animal": {
+            "templates": [
+                "base"
+            ],
+            "coin": 2
+        },
+        "guild": {
+            "templates": [
+                "base"
+            ],
+            "coin": 4
+        },
+        "hierling-group": {
+            "templates": [
+                "base"
+            ],
+            "type": "",
+            "harm": 0,
+            "harm-max": 4,
+            "level": 0,
+            "special-action": "",
+            "max-load": 10
+        },
+        "hireling-specialist": {
+            "templates": [
+                "base"
+            ],
+            "harm": 0,
+            "harm-max": 4,
+            "level": 0,
+            "special-action-1": "",
+            "special-action-2": "",
+            "max-load": 2
         },
         "pc": {
             "playbook": "",
+            "notes": "",
             "stress": {
                 "value": 0,
                 "max": 9
@@ -74,12 +112,38 @@
         "types": [
             "equipment",
             "ability",
-            "specialist-ability"
+            "edge",
+            "flaw",
+            "guild-ability",
+            "storage"
         ],
         "templates": {
             "base":{
                 "description": "Lorem ipsum dolor sit amet"
             }
+        },
+        "storage": {
+            "templates": [
+                "base"
+            ],
+            "animals": 1,
+            "coin": 1,
+            "load": 5
+        },
+        "guild-ability": {
+            "templates": [
+                "base"
+            ]
+        },
+        "edge": {
+            "templates": [
+                "base"
+            ]
+        },
+        "flaw": {
+            "templates": [
+                "base"
+            ]
         },
         "equipment": {
             "templates": [

@@ -6,10 +6,12 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
          });
      }
 
-    getData() {
+    async getData() {
         const data = super.getData();
 
         data.config = CONFIG.frontiersInTheDark;
+
+        data.data.system.notes = await TextEditor.enrichHTML(data.data.system.notes, {secrets: data.data.owner, async: true});
 
         data.equipment = data.items.filter(item => item.type === "equipment");
         data.ability = data.items.filter(item => item.type === "ability");
@@ -53,6 +55,7 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
     activateListeners(html) {
         html.find(".item-delete").click(this._onItemDelete.bind(this));
         html.find(".item-roll").click(this._onItemRoll.bind(this));
+        html.find(".show-item").click(this._onShowItem.bind(this));
 
         super.activateListeners(html);
     }
@@ -65,6 +68,20 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
 
     async _onItemRoll(event) {
         this.rollPopup(event.currentTarget);
+    }
+
+    async _onShowItem(event) {
+        const element = $(event.currentTarget).parents(".item");
+        const item = this.actor.items.get(element.data("itemId"));
+        let speaker = ChatMessage.getSpeaker();
+        let result = await renderTemplate("systems/frontiers-in-the-dark/templates/chat/itemTemplate.html", {name: item.name, description: item.system.description});
+
+        let messageData = {
+            speaker: speaker,
+            content: result,
+            type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        }
+        CONFIG.ChatMessage.documentClass.create(messageData, {})
     }
 
     rollPopup(element) {

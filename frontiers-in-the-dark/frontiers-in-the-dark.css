@@ -1,0 +1,38 @@
+.armours-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+
+.upper-section {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+
+.fa-trash {
+    margin-left: 10px;
+}
+
+.digitInput {
+    display: inline-block;
+    width: 25px !important;
+}
+
+.editor {
+    min-height: 400px;
+}
+
+.editor-content {
+    min-height: 400px;
+}
+
+.tox {
+    min-height: 400px;
+}
+

@@ -5,21 +5,25 @@
         <h2><input name="data.playbook" type="text" value="{{data.system.playbook}}" placeholder="Playbook"/></h2>
     </header>
 
-    <section>
-        <div class="section-block">
+    <section class="upper-section">
+        <div class="upper-section-block">
             <label for="data.stress.value">Stress:</label>
-            <input name="data.stress.value" id="data.stress.value" type="text" value="{{data.system.stress.value}}" data-dtype="Number"/>
+            <input class="digitInput" name="data.stress.value" id="data.stress.value" type="text" value="{{data.system.stress.value}}" data-dtype="Number"/>
             <span>/{{data.system.stress.max}}</span>
         </div>
-        <div class="section-block">
+        <div class="upper-section-block">
             <label for="data.trauma.value">Trauma:</label>
-            <input name="data.trauma.value" id="data.trauma.value" type="text" value="{{data.system.trauma.value}}" data-dtype="Number"/>
+            <input class="digitInput" name="data.trauma.value" id="data.trauma.value" type="text" value="{{data.system.trauma.value}}" data-dtype="Number"/>
             <span>/{{data.system.trauma.max}}</span>
         </div>
-        <div class="section-block">
+        <div class="upper-section-block">
             <label for="data.eldritch-doom">Eldritch Doom:</label>
-            <input name="data.eldritch-doom" id="data.eldritch-doom" type="text" value="{{data.system.eldritch-doom}}" data-dtype="Number"/>
+            <input class="digitInput" name="data.eldritch-doom" id="data.eldritch-doom" type="text" value="{{data.system.eldritch-doom}}" data-dtype="Number"/>
             <span>/{{data.system.eldritch-doom-max}}</span>
+        </div>
+        <div class="upper-section-block">
+            <label for="data.stash">Stash:</label>
+            <input class="digitInput" name="data.stash" id="data.stash" type="text" value="{{data.system.stash}}" data-dtype="Number"/>
         </div>
     </section>
 
@@ -31,88 +35,99 @@
     </nav>
 
     <section class="sheet-body">
-
         {{!-- Actions Tab --}}
         <div class="tab" data-group="primary" data-tab="actions">
             <h1>Specialist action</h1>
             <label for="data.specialist-rank">Rank:</label>
-            <input type="text" name="data.specialist-rank" id="data.specialist-rank" value="{{data.system.specialist-rank}}" data-dtype="Number"/>
+            <input class="digitInput" type="text" name="data.specialist-rank" id="data.specialist-rank" value="{{data.system.specialist-rank}}" data-dtype="Number"/>
 
             <label for="data.specialist-charge">Charges:</label>
-            <input type="text" name="data.specialist-charge" id="data.specialist-charge" value="{{data.system.specialist-charge}}" data-dtype="Number"/>
+            <input class="digitInput" type="text" name="data.specialist-charge" id="data.specialist-charge" value="{{data.system.specialist-charge}}" data-dtype="Number"/>
             <span>/{{data.system.specialist-rank}}</span>
             <ul>
                 {{#each specialistability as |item id|}}
                 <div class="item" data-item-id="{{item._id}}">
-                    <b>{{item.name}}:</b> {{item.system.description}}
+                    <a class="show-item"><b>{{item.name}}:</b></a> {{item.system.description}}
                     <a class="item-delete"><i class="fas fa-trash"></i></a>
                 </div>
                 {{/each}}
             </ul>
             <hr/>
             <h1>Actions and Resistance</h1>
-            <span>
+            <h2>
                 Perception: {{data.system.attributes.perception.value}} - 
                 <a class="item-roll" data-rollAttribute="perception"><i class="fas fa-dice"></i></a>
-            </span>
+            </h2>
             <ul>
                 <li>
-                    <label for="data.attributes.perception.hunt">Hunt - <a class="item-roll" data-rollAttribute="perception" data-rollAction="hunt"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.perception.hunt" id="data.attributes.perception.hunt" value="{{data.system.attributes.perception.hunt}}" data-dtype="Number"/>
+                    <label for="data.attributes.perception.hunt">Hunt</label>
+                    <input class="digitInput" type="text" name="data.attributes.perception.hunt" id="data.attributes.perception.hunt" value="{{data.system.attributes.perception.hunt}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="perception" data-rollAction="hunt"><i class="fas fa-dice"></i></a>
                 </li>
                 <li>
-                    <label for="data.attributes.perception.research">Research - <a class="item-roll" data-rollAttribute="perception" data-rollAction="research"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.perception.research" id="data.attributes.perception.research" value="{{data.system.attributes.perception.research}}" data-dtype="Number"/>
+                    <label for="data.attributes.perception.research">Research</label>
+                    <input class="digitInput" type="text" name="data.attributes.perception.research" id="data.attributes.perception.research" value="{{data.system.attributes.perception.research}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="perception" data-rollAction="research"><i class="fas fa-dice"></i></a>
                 </li>
                 <li>
-                    <label for="data.attributes.perception.rig">Rig - <a class="item-roll" data-rollAttribute="perception" data-rollAction="rig"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.perception.rig" id="data.attributes.perception.rig" value="{{data.system.attributes.perception.rig}}" data-dtype="Number"/>
+                    <label for="data.attributes.perception.rig">Rig</label>
+                    <input class="digitInput" type="text" name="data.attributes.perception.rig" id="data.attributes.perception.rig" value="{{data.system.attributes.perception.rig}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="perception" data-rollAction="rig"><i class="fas fa-dice"></i></a>
                 </li>
                 <li>
-                    <label for="data.attributes.perception.scout">Scout - <a class="item-roll" data-rollAttribute="perception" data-rollAction="scout"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.perception.scout" id="data.attributes.perception.scout" value="{{data.system.attributes.perception.scout}}" data-dtype="Number"/>
+                    <label for="data.attributes.perception.scout">Scout</label>
+                    <input class="digitInput" type="text" name="data.attributes.perception.scout" id="data.attributes.perception.scout" value="{{data.system.attributes.perception.scout}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="perception" data-rollAction="scout"><i class="fas fa-dice"></i></a>
                 </li>
             </ul>
 
 
-            <span>Physical: {{data.system.attributes.physical.value}} - <a class="item-roll" data-rollAttribute="physical"><i class="fas fa-dice"></i></a></span>
+            <h2>Physical: {{data.system.attributes.physical.value}} - <a class="item-roll" data-rollAttribute="physical"><i class="fas fa-dice"></i></a></h2>
             <ul>
                 <li>
-                    <label for="data.attributes.physical.finesse">Finesse - <a class="item-roll" data-rollAttribute="physical" data-rollAction="finesse"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.physical.finesse" id="data.attributes.physical.finesse" value="{{data.system.attributes.physical.finesse}}" data-dtype="Number"/>
+                    <label for="data.attributes.physical.finesse">Finesse</label>
+                    <input class="digitInput" type="text" name="data.attributes.physical.finesse" id="data.attributes.physical.finesse" value="{{data.system.attributes.physical.finesse}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="physical" data-rollAction="finesse"><i class="fas fa-dice"></i></a>
                 </li>
                 <li>
-                    <label for="data.attributes.physical.manoeuvre">Manoeuvre - <a class="item-roll" data-rollAttribute="physical" data-rollAction="manoeuvre"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.physical.manoeuvre" id="data.attributes.physical.manoeuvre" value="{{data.system.attributes.physical.manoeuvre}}" data-dtype="Number"/>
+                    <label for="data.attributes.physical.manoeuvre">Manoeuvre</label>
+                    <input class="digitInput" type="text" name="data.attributes.physical.manoeuvre" id="data.attributes.physical.manoeuvre" value="{{data.system.attributes.physical.manoeuvre}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="physical" data-rollAction="manoeuvre"><i class="fas fa-dice"></i></a>
                 </li>
                 <li>
-                    <label for="data.attributes.physical.skirmish">Skirmish - <a class="item-roll" data-rollAttribute="physical" data-rollAction="skirmish"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.physical.skirmish" id="data.attributes.physical.skirmish" value="{{data.system.attributes.physical.skirmish}}" data-dtype="Number"/>
+                    <label for="data.attributes.physical.skirmish">Skirmish</label>
+                    <input class="digitInput" type="text" name="data.attributes.physical.skirmish" id="data.attributes.physical.skirmish" value="{{data.system.attributes.physical.skirmish}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="physical" data-rollAction="skirmish"><i class="fas fa-dice"></i></a>
                 </li>
                 <li>
-                    <label for="data.attributes.physical.wreck">Wreck - <a class="item-roll" data-rollAttribute="physical" data-rollAction="wreck"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.physical.wreck" id="data.attributes.physical.wreck" value="{{data.system.attributes.physical.wreck}}" data-dtype="Number"/>
+                    <label for="data.attributes.physical.wreck">Wreck</label>
+                    <input class="digitInput" type="text" name="data.attributes.physical.wreck" id="data.attributes.physical.wreck" value="{{data.system.attributes.physical.wreck}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="physical" data-rollAction="wreck"><i class="fas fa-dice"></i></a>
                 </li>
             </ul>
 
 
-            <span>Mental: {{data.system.attributes.mental.value}} - <a class="item-roll" data-rollAttribute="mental"><i class="fas fa-dice"></i></a></span>
+            <h2>Mental: {{data.system.attributes.mental.value}} - <a class="item-roll" data-rollAttribute="mental"><i class="fas fa-dice"></i></a></h2>
             <ul>
                 <li>
-                    <label for="data.attributes.mental.attune">Attune - <a class="item-roll" data-rollAttribute="mental" data-rollAction="attune"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.mental.attune" id="data.attributes.mental.attune" value="{{data.system.attributes.mental.attune}}" data-dtype="Number"/>
+                    <label for="data.attributes.mental.attune">Attune</label>
+                    <input class="digitInput" type="text" name="data.attributes.mental.attune" id="data.attributes.mental.attune" value="{{data.system.attributes.mental.attune}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="mental" data-rollAction="attune"><i class="fas fa-dice"></i></a>
                 </li>
                 <li>
-                    <label for="data.attributes.mental.command">Command - <a class="item-roll" data-rollAttribute="mental" data-rollAction="command"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.mental.command" id="data.attributes.mental.command" value="{{data.system.attributes.mental.command}}" data-dtype="Number"/>
+                    <label for="data.attributes.mental.command">Command</label>
+                    <input class="digitInput" type="text" name="data.attributes.mental.command" id="data.attributes.mental.command" value="{{data.system.attributes.mental.command}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="mental" data-rollAction="command"><i class="fas fa-dice"></i></a>
                 </li>
                 <li>
-                    <label for="data.attributes.mental.consort">Consort - <a class="item-roll" data-rollAttribute="mental" data-rollAction="consort"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.mental.consort" id="data.attributes.mental.consort" value="{{data.system.attributes.mental.consort}}" data-dtype="Number"/>
+                    <label for="data.attributes.mental.consort">Consort</label>
+                    <input class="digitInput" type="text" name="data.attributes.mental.consort" id="data.attributes.mental.consort" value="{{data.system.attributes.mental.consort}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="mental" data-rollAction="consort"><i class="fas fa-dice"></i></a>
                 </li>
                 <li>
-                    <label for="data.attributes.mental.deceive">Deceive - <a class="item-roll" data-rollAttribute="mental" data-rollAction="deceive"><i class="fas fa-dice"></i></a></label>
-                    <input type="text" name="data.attributes.mental.deceive" id="data.attributes.mental.deceive" value="{{data.system.attributes.mental.deceive}}" data-dtype="Number"/>
+                    <label for="data.attributes.mental.deceive">Deceive</label>
+                    <input class="digitInput" type="text" name="data.attributes.mental.deceive" id="data.attributes.mental.deceive" value="{{data.system.attributes.mental.deceive}}" data-dtype="Number"/>
+                    <a class="item-roll" data-rollAttribute="mental" data-rollAction="deceive"><i class="fas fa-dice"></i></a>
                 </li>
             </ul>
         </div>
@@ -122,7 +137,7 @@
             <ul>
                 {{#each ability as |item id|}}
                 <div class="item" data-item-id="{{item._id}}">
-                    <b>{{item.name}}:</b> {{item.system.description}}
+                    <a class="show-item"><b>{{item.name}}:</b></a> {{item.system.description}}
                     <a class="item-delete"><i class="fas fa-trash"></i></a>
                 </div>
                 <hr/>
@@ -138,12 +153,12 @@
                     <input name="data.armour-uses.armour" id="data.armour-uses.armour" type="checkbox" {{checked data.system.armour-uses.armour}} />
                 </div>
                 <div>
-                    <label for="data.armour-uses.heavy">Heavy: </label>
-                    <input name="data.armour-uses.heavy" id="data.armour-uses.heavy" type="checkbox" {{checked data.system.armour-uses.heavy}} />
-                </div>
-                <div>
                     <label for="data.armour-uses.shield">Shield: </label>
                     <input name="data.armour-uses.shield" id="data.armour-uses.shield" type="checkbox" {{checked data.system.armour-uses.shield}} />
+                </div>
+                <div>
+                    <label for="data.armour-uses.heavy">Heavy: </label>
+                    <input name="data.armour-uses.heavy" id="data.armour-uses.heavy" type="checkbox" {{checked data.system.armour-uses.heavy}} />
                 </div>
                 <div>
                     <label for="data.armour-uses.special">Special: </label>
@@ -156,7 +171,7 @@
             <ul>
                 {{#each equipment as |item id|}}
                 <div class="item" data-item-id="{{item._id}}">
-                    {{item.name}} - Load: {{item.system.load}}
+                    <a class="show-item"><b>{{item.name}} - Load: {{item.system.load}}</b></a>
                     <i>{{item.system.description}}</i>
                     <a class="item-delete"><i class="fas fa-trash"></i></a>
                 </div>
@@ -166,8 +181,8 @@
         </div>
 
         {{!-- Notes Tab --}}
-        <div class="tab" data-group="primary" data-tab="notes">
-            Notes tab under construction
+        <div class="tab" data-group="primary" data-tab="notes" class="notes-tab-container">
+            {{editor content=data.system.notes target="data.system.notes" button=false editable=editable}}
         </div>
     </section>
 </form>

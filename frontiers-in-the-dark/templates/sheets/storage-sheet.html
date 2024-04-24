@@ -1,0 +1,14 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <h1><input name="name" type="text" value="{{data.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+    <div>
+        <label for="data.load">Load: </label>
+        <input name="data.load" id="data.load" type="text" value="{{data.system.load}}" data-dtype="Number"/>
+        <label for="data.coin">Coin: </label>
+        <input name="data.coin" id="data.coin" type="text" value="{{data.system.coin}}" data-dtype="Number"/>
+        <label for="data.animals">Animals: </label>
+        <input name="data.animals" id="data.animals" type="text" value="{{data.system.animals}}" data-dtype="Number"/>
+    </div>
+    <textarea name="data.description">{{data.system.description}}</textarea>
+</form>
