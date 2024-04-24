@@ -1,7 +1,8 @@
 {
     "Actor": {
         "types": [
-            "pc"
+            "pc",
+            "guild"
         ],
         "templates": {
             "base":{
@@ -20,10 +21,9 @@
             },
             "healing-clock": 0,
             "experience": 0,
+            "stash": 0,
             "experience-max": 8,
             "stash": 0,
-            "abilities": [],
-            "inventory": [],
             "harm": {
                 "lvl1": {
                     "one": "",
@@ -64,16 +64,17 @@
                     "deceive": 0
                 }
             },
-            "specialist-ability": {
-                "name": "",
-                "rank": 0,
-                "charges": 0
-            }
+            "specialist-rank": 1,
+            "specialist-charge": 1,
+            "eldritch-doom": 0,
+            "eldritch-doom-max": 6
         }
     },
     "Item": {
         "types": [
-            "equipment"
+            "equipment",
+            "ability",
+            "specialist-ability"
         ],
         "templates": {
             "base":{
@@ -86,6 +87,16 @@
             ],
             "load": 1,
             "supply": false
+        },
+        "ability": {
+            "templates": [
+                "base"
+            ]
+        },
+        "specialistability": {
+            "templates": [
+                "base"
+            ]
         }
     }
 }

@@ -1,0 +1,18 @@
+<div>
+    <h1>{{rollType}}</h1>
+    <hr/>
+    <h2>{{rollResultText}}</h2>
+    <hr/>
+        <h3>Position: {{position}}</h3>
+        <h3>Effect: {{effect}}</h3>
+    <hr/>
+    <ul class="dice-rolls">
+        {{#each this.rolls}}
+            {{#if this.result}}
+                <li class="roll die d6">{{{this.result}}}</li>
+            {{else}}
+                <li class="roll die d6">{{{this.roll}}}</li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</div>
