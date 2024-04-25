@@ -14,7 +14,78 @@
     "styles": [
         "frontiers-in-the-dark.css"
     ],
-    "packs": [],
+    "packs": [
+        {
+            "name": "ability",
+            "label": "Abilities",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/abilities",
+            "type": "Item"
+        },
+        {
+            "name": "edge",
+            "label": "Edges",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/edges",
+            "type": "Item"
+        },
+        {
+            "name": "flaw",
+            "label": "Flaws",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/flaws",
+            "type": "Item"
+        },
+        {
+            "name": "equipment",
+            "label": "Equipments",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/equipments",
+            "type": "Item"
+        },
+        {
+            "name": "weapon",
+            "label": "Weapons",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/weapons",
+            "type": "Item"
+        },
+        {
+            "name": "armour",
+            "label": "Armours",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/armours",
+            "type": "Item"
+        },
+        {
+            "name": "guild-abilities",
+            "label": "Guild Ability",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/guild-abilities",
+            "type": "Item"
+        },
+        {
+            "name": "specialist-abilities",
+            "label": "Specialist Ability",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/specialist-abilities",
+            "type": "Item"
+        },
+        {
+            "name": "storages",
+            "label": "Storage",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/storages",
+            "type": "Item"
+        },
+        {
+            "name": "animals",
+            "label": "Animal",
+            "system": "frontiers-in-the-dark",
+            "path": "./packs/animals",
+            "type": "Actor"
+        }
+    ],
     "languages": [
         {
             "lang": "en",

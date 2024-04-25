@@ -49,6 +49,7 @@
         "pc": {
             "playbook": "",
             "notes": "",
+            "xp": 0,
             "stress": {
                 "value": 0,
                 "max": 9
@@ -134,7 +135,8 @@
         "guild-ability": {
             "templates": [
                 "base"
-            ]
+            ],
+            "coin": 1
         },
         "edge": {
             "templates": [

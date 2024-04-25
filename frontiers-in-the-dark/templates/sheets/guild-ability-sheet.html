@@ -1,6 +1,10 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <h1><input name="name" type="text" value="{{data.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+        <div>
+            <label for="data.coin">Coin: </label>
+            <input class="digitInput" name="data.coin" id="data.coin" type="text" value="{{data.system.coin}}" data-dtype="Number"/>
+        </div>
     </header>
     <textarea name="data.description">{{data.system.description}}</textarea>
 </form>
