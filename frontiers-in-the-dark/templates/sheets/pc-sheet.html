@@ -4,14 +4,15 @@
         <h1><input name="name" type="text" value="{{data.name}}" placeholder="{{ localize 'Name' }}"/></h1>
         <a class="fortune-roll">Fortune Roll</a>
         <h2><input name="data.playbook" type="text" value="{{data.system.playbook}}" placeholder="Playbook"/></h2>
-    </header>
-
-    <section class="upper-section">
-        <div class="upper-section-block">
+        
+        <div>
             <label for="data.stress.value">Stress:</label>
             <input class="digitInput" name="data.stress.value" id="data.stress.value" type="text" value="{{data.system.stress.value}}" data-dtype="Number"/>
             <span>/{{data.system.stress.max}}</span>
         </div>
+    </header>
+
+    <section class="upper-section">
         <div class="upper-section-block">
             <label for="data.trauma.value">Trauma:</label>
             <input class="digitInput" name="data.trauma.value" id="data.trauma.value" type="text" value="{{data.system.trauma.value}}" data-dtype="Number"/>
@@ -36,6 +37,7 @@
         <a class="item" data-tab="inventory">Inventory</a>
         <a class="item" data-tab="actions">Actions</a>
         <a class="item" data-tab="abilities">Abilities</a>
+        <a class="item" data-tab="harm">Harm</a>
         <a class="item" data-tab="notes">Notes</a>
     </nav>
 
@@ -152,6 +154,22 @@
 
         {{!-- Inventory Tab --}}
         <div class="tab" data-group="primary" data-tab="inventory">
+            <h1>Load: {{data.system.load}} - {{data.system.loadText}}</h1>
+            <hr/>
+            <ul>
+                {{#each equipment as |item id|}}
+                <div class="item" data-item-id="{{item._id}}">
+                    <a class="show-item"><b>{{item.name}} - Load: {{item.system.load}}</b></a>
+                    <i>{{item.system.description}}</i>
+                    <a class="item-delete"><i class="fas fa-trash"></i></a>
+                </div>
+                <hr/>
+                {{/each}}
+            </ul>
+        </div>
+
+        {{!-- Harm Tab --}}
+        <div class="tab" data-group="primary" data-tab="harm" class="harm-tab-container">
             <div class="armours-container">
                 <div>
                     <label for="data.armour-uses.armour">Armour: </label>
@@ -171,18 +189,26 @@
                 </div>
             </div>
             <hr/>
-            <h1>Load: {{data.system.load}} - {{data.system.loadText}}</h1>
-            <hr/>
-            <ul>
-                {{#each equipment as |item id|}}
-                <div class="item" data-item-id="{{item._id}}">
-                    <a class="show-item"><b>{{item.name}} - Load: {{item.system.load}}</b></a>
-                    <i>{{item.system.description}}</i>
-                    <a class="item-delete"><i class="fas fa-trash"></i></a>
-                </div>
-                <hr/>
-                {{/each}}
-            </ul>
+
+            <div class="harm-tab-row">
+                <span class="harm-lvl-text">Level 3:</span>
+                <input type="text" value="{{data.system.harm.lvl3.one}}" class="harm-input-wide" name="data.harm.lvl3.one" id="data.harm.lvl3.one"/>
+                <span class="harm-fx-text">Needs help</span>
+            </div>
+
+            <div class="harm-tab-row">
+                <span class="harm-lvl-text">Level 2:</span>
+                <input type="text" value="{{data.system.harm.lvl2.one}}" class="harm-input" name="data.harm.lvl2.one" id="data.harm.lvl2.one"/>
+                <input type="text" value="{{data.system.harm.lvl2.two}}" class="harm-input" name="data.harm.lvl2.two" id="data.harm.lvl2.two"/>
+                <span class="harm-fx-text">-1d</span>
+            </div>
+
+            <div class="harm-tab-row">
+                <span class="harm-lvl-text">Level 1:</span>
+                <input type="text" value="{{data.system.harm.lvl1.one}}" class="harm-input" name="data.harm.lvl1.one" id="data.harm.lvl1.one"/>
+                <input type="text" value="{{data.system.harm.lvl1.two}}" class="harm-input" name="data.harm.lvl1.two" id="data.harm.lvl1.two"/>
+                <span class="harm-fx-text">Reduced Effect</span>
+            </div>
         </div>
 
         {{!-- Notes Tab --}}

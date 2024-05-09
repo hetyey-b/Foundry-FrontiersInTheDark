@@ -53,3 +53,25 @@
     min-height: 400px;
 }
 
+.harm-input {
+    margin-left:5px;
+    margin-right: 5px;
+    display: inline-block;
+    width: 100px !important;
+} 
+.harm-input-wide {
+    margin-left:5px;
+    margin-right: 5px;
+    display: inline-block;
+    width: 203px !important;
+} 
+.harm-lvl-text {
+    font-weight: bold;
+}
+.harm-fx-text {
+    font-style: italic;
+}
+.harm-tab-row {
+    margin-bottom: 10px;
+}
+
