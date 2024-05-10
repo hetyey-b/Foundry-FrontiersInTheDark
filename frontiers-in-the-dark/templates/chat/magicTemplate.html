@@ -1,0 +1,20 @@
+<div>
+    <h1>Magic - {{method}} - Level {{lvl}}</h1>
+    <hr/>
+    <span>Components</span>
+    <ul>
+        {{#each this.components}}
+            <li>{{{this.name}}}</li>
+        {{/each}}
+    </ul>
+    <hr/>
+    Range: {{range}}
+    <hr/>
+    Duration: {{duration}}
+    <hr/>
+    Area: {{area}}
+    <hr />
+    Quirks: {{quirks}}
+    <hr />
+    Level Remaining: {{lvl_remaining}}
+</div>

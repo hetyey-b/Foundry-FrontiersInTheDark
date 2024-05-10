@@ -90,15 +90,76 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
         if (concentrating_lvl <= 0) {
             return;
         }
-
+        
+        const ranges = [ 
+            "Touch: anything you are touching",
+            "Reach: anything within 5 meters",
+            "Near: anything within 10 meters",
+            "Far: anything in the same room",
+            "Sight: anything you can see",
+        ];
+        const durations = [
+            "Instant: the spell only lasts a moment, tho it's effects remain. This is typically what's used for combat spells.",
+            "Momentary: the spell's effect lasts for 10 seconds",
+            "Minutes: the spell's effect lasts 10 minutes",
+            "Hour: the spell's effect lasts 1 hour",
+            "Day: the spell's effect lasts 1 day",
+        ];
+        const areas = [
+            "Tiny: affects a small item, something that would only be 1 Load to carry",
+            "Individual: affects a single distinct creature or one object of similar size to a person",
+            "Group: 5 creatures close together",
+            "Room: affects an entire Small Room",
+            "Endless: the spell can go on for up to 100 meters in diameter",
+        ];
         let content = `
             <form>
+                <h1>Level: ${concentrating_lvl}</h1>
+                <hr/>
                 <label for="method">Method:</label>
                 <select id="method" name="method">
                     <option value="evocation" selected>Evocation</option>
                     <option value="enchantment">Enchantment</option>
                     <option value="conjuration">Conjuration</option>
                     <option value="other">Other (from playbook)</option>
+                </select>
+                <hr/>
+                <label for="range">Range:</label>
+                <select id="range" name="range">
+                    <option value="0" selected>(0) ${ranges[0]}</option>
+                    <option value="1">(1) ${ranges[1]}</option>
+                    <option value="2">(2) ${ranges[2]}</option>
+                    <option value="3">(3) ${ranges[3]}</option>
+                    <option value="4">(4) ${ranges[4]}</option>
+                </select>
+                <hr/>
+                <label for="duration">Duration:</label>
+                <select id="duration" name="duration">
+                    <option value="0" selected>(0) ${durations[0]}</option>
+                    <option value="1">(1) ${durations[1]}</option>
+                    <option value="2">(2) ${durations[2]}</option>
+                    <option value="3">(3) ${durations[3]}</option>
+                    <option value="4">(4) ${durations[4]}</option>
+                </select>
+                <hr/>
+                <label for="area">Area:</label>
+                <select id="area" name="area">
+                    <option value="0" selected>(0) ${areas[0]}</option>
+                    <option value="1">(1) ${areas[1]}</option>
+                    <option value="2">(2) ${areas[2]}</option>
+                    <option value="3">(3) ${areas[3]}</option>
+                    <option value="4">(4) ${areas[4]}</option>
+                </select>
+                <hr/>
+                <label for="quirks">Quirks:</label>
+                <select id="quirks" name="quirks">
+                    <option value="0" selected>0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
                 </select>
                 <hr/>
                 <ul>
@@ -108,6 +169,45 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
                 </ul>
             </form>
         `;
+
+        new Dialog({
+            title: "Cast Spell",
+            content: content,
+            buttons: {
+                yes: {
+                    label: "Cast",
+                    callback: async (html) => {
+                        let speaker = ChatMessage.getSpeaker();
+                        let method = html.find('[name="method"]')[0].value;
+                        let range = parseInt(html.find('[name="range"]')[0].value);
+                        let duration = parseInt(html.find('[name="duration"]')[0].value);
+                        let area = parseInt(html.find('[name="area"]')[0].value);
+                        let quirks = parseInt(html.find('[name="quirks"]')[0].value);
+
+                        let result = await renderTemplate("systems/frontiers-in-the-dark/templates/chat/magicTemplate.html", {
+                            lvl: concentrating_lvl,
+                            components: concentrating,
+                            range: ranges[range],
+                            duration: durations[duration],
+                            area: areas[area],
+                            quirks: quirks,
+                            lvl_remaining: concentrating_lvl - (range + duration + area + quirks),
+                            method: method,
+                        });
+
+                        let messageData = {
+                            speaker: speaker,
+                            content: result,
+                            type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                        }
+                        CONFIG.ChatMessage.documentClass.create(messageData, {})
+                    }
+                },
+                no: {
+                    label: "Cancel"
+                }
+            }
+        }).render(true, {width: 800});
     }
 
     async _onItemDelete(event) {
