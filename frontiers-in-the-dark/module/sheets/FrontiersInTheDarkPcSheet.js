@@ -16,10 +16,29 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
         data.equipment = data.items.filter(item => item.type === "equipment");
         data.ability = data.items.filter(item => item.type === "ability");
         data.specialistability = data.items.filter(item => item.type === "specialist-ability");
+        data.concentrating = data.items.filter(item => item.type === "component").sort((a,b) => {
+            if (a.system.lvl > b.system.lvl) {
+                return 1;
+            }
+            if (a.system.lvl < b.system.lvl) {
+                return -1;
+            }
+            if (a.name < b.name) {
+                return -1;
+            }
+            if (a.name > b.name) {
+                return 1;
+            }
+            return 0;
+        });
 
+        data.concentrating_lvl = data.concentrating.reduce((accumulator, current) => {
+            return accumulator + current.system.lvl
+        }, 0);
         data.data.system.load = data.equipment.reduce((accumulator, current) => {
             return accumulator + current.system.load
         }, 0);
+
         data.data.system.loadText = "Fast";
         if (data.data.system.load > 4) {
             data.data.system.loadText = "Regular";
@@ -57,8 +76,38 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
         html.find(".item-roll").click(this._onItemRoll.bind(this));
         html.find(".show-item").click(this._onShowItem.bind(this));
         html.find(".fortune-roll").click(this._onFortuneRoll.bind(this));
+        html.find(".cast-spell").click(this._onCastSpell.bind(this));
 
         super.activateListeners(html);
+    }
+
+    async _onCastSpell() {
+        var concentrating = this.actor.items._source.filter(item => item.type === "component");
+        var concentrating_lvl = concentrating.reduce((accumulator, current) => {
+            return accumulator + current.system.lvl
+        }, 0);
+
+        if (concentrating_lvl <= 0) {
+            return;
+        }
+
+        let content = `
+            <form>
+                <label for="method">Method:</label>
+                <select id="method" name="method">
+                    <option value="evocation" selected>Evocation</option>
+                    <option value="enchantment">Enchantment</option>
+                    <option value="conjuration">Conjuration</option>
+                    <option value="other">Other (from playbook)</option>
+                </select>
+                <hr/>
+                <ul>
+                ${
+                    concentrating.map(component => `<li>${component.name}</li>`).join('')
+                }
+                </ul>
+            </form>
+        `;
     }
 
     async _onItemDelete(event) {
@@ -132,7 +181,6 @@ export default class FrontiersInTheDarkPcSheet extends ActorSheet {
                             rollResultText = resultTextFromRoll[rollResults[0]];
                         }
 
-                        debugger
                         let result = await renderTemplate("systems/frontiers-in-the-dark/templates/chat/fortuneRollTemplate.html", {rolls, rollResultText});
 
                         let messageData = {

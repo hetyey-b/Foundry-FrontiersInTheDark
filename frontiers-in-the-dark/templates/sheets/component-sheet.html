@@ -1,0 +1,11 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{data.img}}" data-edit="img" title="{{data.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{data.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+
+    <div>
+        <label for="data.lvl">Level: </label>
+        <input class="digitInput" name="data.lvl" id="data.lvl" type="text" value="{{data.system.lvl}}" data-dtype="Number"/>
+    </div>
+</form>

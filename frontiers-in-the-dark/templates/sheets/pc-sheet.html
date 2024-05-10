@@ -38,6 +38,7 @@
         <a class="item" data-tab="actions">Actions</a>
         <a class="item" data-tab="abilities">Abilities</a>
         <a class="item" data-tab="harm">Harm</a>
+        <a class="item" data-tab="magic">Magic</a>
         <a class="item" data-tab="notes">Notes</a>
     </nav>
 
@@ -208,6 +209,41 @@
                 <input type="text" value="{{data.system.harm.lvl1.one}}" class="harm-input" name="data.harm.lvl1.one" id="data.harm.lvl1.one"/>
                 <input type="text" value="{{data.system.harm.lvl1.two}}" class="harm-input" name="data.harm.lvl1.two" id="data.harm.lvl1.two"/>
                 <span class="harm-fx-text">Reduced Effect</span>
+            </div>
+        </div>
+
+        {{!-- Magic Tab --}}
+        <div class="tab" data-group="primary" data-tab="magic" class="magic-tab-container">
+            <div>
+                <label for="data.component-pouch">Component Pouch:</label>
+                <input class="digitInput" name="data.component-pouch" id="data.component-pouch" type="text" value="{{data.system.component-pouch}}" data-dtype="Number"/>
+                <span>/3</span>
+            </div>
+            <hr/>
+            <div class="magic-bottom-section-container">
+                <div class="magic-bottom-section">
+                    <span>Concentrating ({{concentrating_lvl}} Level) - </span><a class="cast-spell"><i class="fas fa-hat-wizard"></i></a>
+                    <ul>
+                        {{#each concentrating as |item id|}}
+                        <li class="item" data-item-id="{{item._id}}">
+                            <span>{{item.name}}</span>
+                            <a class="item-delete"><i class="fas fa-trash"></i></a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+                <div class="magic-bottom-section">
+                    <span>Component Combinations</span>
+                    <ul>
+                        <li>Fire + Water = Steam</li>
+                        <li>Fire + Earth = Magma</li>
+                        <li>Fire + Air = Lightning</li>
+                        <li>Water + Earth = Mud</li>
+                        <li>Water + Air = Frost</li>
+                        <li>Earth + Air = Sand</li>
+                    </ul>
+                </div>
             </div>
         </div>
 

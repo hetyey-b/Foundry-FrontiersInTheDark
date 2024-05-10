@@ -75,3 +75,14 @@
     margin-bottom: 10px;
 }
 
+.magic-bottom-section-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+
+.magic-bottom-section {
+    display: inline-block;
+}

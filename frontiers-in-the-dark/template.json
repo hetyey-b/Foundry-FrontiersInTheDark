@@ -61,6 +61,7 @@
             "healing-clock": 0,
             "experience": 0,
             "stash": 0,
+            "component-pouch": 0,
             "experience-max": 8,
             "stash": 0,
             "harm": {
@@ -116,7 +117,8 @@
             "flaw",
             "guild-ability",
             "specialist-ability",
-            "storage"
+            "storage",
+            "component"
         ],
         "templates": {
             "base":{
@@ -141,6 +143,9 @@
             "templates": [
                 "base"
             ]
+        },
+        "component": {
+            "lvl": 1
         },
         "flaw": {
             "templates": [
